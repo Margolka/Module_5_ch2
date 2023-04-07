@@ -12,33 +12,25 @@ class Human:
         self.mail = mail
         pass
 
+        # Variables
+        self._length = 0
+
     def __str__(self):
         return f"{self.first_name} {self.last_name} {self.mail}"
 
+    @property
+    def length(self):
+        return len(f"{self.first_name} {self.last_name}")
 
-# using Faker to create data for monkeys (allmost like humans) ;)
-monkey_list = []
-for _ in range(4):
-    monkey_list.append(
-        Human(
-            first_name=monkey.first_name(),
-            last_name=monkey.last_name(),
-            firm=monkey.company(),
-            position=monkey.job(),
-            mail=monkey.email(),
-        )
-    )
+    def contact(self):
+        return f"Kontaktuj się z {self.first_name} {self.last_name} {self.position} {self.mail}- długość {self.length}"
 
-[print(monkeys) for monkeys in monkey_list]
 
-print("=== Sorted by first name ===")
-by_first_name = sorted(monkey_list, key=lambda monkey: monkey.first_name)
-[print(monkeys) for monkeys in by_first_name]
-
-print("=== Sorted by last name ===")
-by_last_name = sorted(monkey_list, key=lambda monkey: monkey.last_name)
-[print(monkeys) for monkeys in by_last_name]
-
-print("=== Sorted by e-mail ===")
-by_mail = sorted(monkey_list, key=lambda monkey: monkey.mail)
-[print(monkeys) for monkeys in by_mail]
+monkey_01 = Human(
+    first_name=monkey.first_name(),
+    last_name=monkey.last_name(),
+    firm=monkey.company(),
+    position=monkey.job(),
+    mail=monkey.email(),
+)
+print(monkey_01.contact())
